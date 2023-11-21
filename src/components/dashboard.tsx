@@ -1,16 +1,18 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import  { getEmployees, updateEmployeeData } from "../data/data";
+import { getEmployees, updateEmployeeData } from "../data/data";
 
 const EmployeeDashboard: React.FC = () => {
-  const employeeList  = getEmployees();
+  const employeeList = getEmployees();
   const navigate = useNavigate();
 
+  //delete function
   const handleDelete = (id: number): void => {
-    const updatedData = employeeList.filter((employee:any) => employee.id !== id);
+    const updatedData = employeeList.filter(
+      (employee: any) => employee.id !== id
+    );
     updateEmployeeData(updatedData);
-    navigate('/');
-    console.log(updatedData);
+    navigate("/");
   };
 
   return (
@@ -30,7 +32,7 @@ const EmployeeDashboard: React.FC = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            {/* <th>Birthdate</th> */}
+            <th>Birthdate</th>
             <th>department</th>
             <th>experiance</th>
           </tr>
@@ -44,23 +46,21 @@ const EmployeeDashboard: React.FC = () => {
               <td>{employee.department}</td>
               <td>{employee.experiance}</td>
               <td>
-              <Link to={`/edit/${employee.id}`}>
-                <button type="button" className="btn btn-primary">
-                  Edit
-                </button>
+                <Link to={`/edit/${employee.id}`}>
+                  <button type="button" className="btn btn-primary">
+                    Edit
+                  </button>
                 </Link>
               </td>
               <td>
                 {" "}
-                
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={() => handleDelete(employee.id)}
-                  >
-                    Delete
-                  </button>
-                
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={() => handleDelete(employee.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
