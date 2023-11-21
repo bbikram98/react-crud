@@ -60,14 +60,14 @@ const EmployeeAdd: React.FC<Employee> = () => {
       newErrors.name = "Name is required";
     }
 
-    else if (!/^[A-Z]+$/.test(formData.name)) {
+    else if (!/^[A-Z ]+$/.test(formData.name)) {
       newErrors.name = "Name should only contain capital letters";
     }
 
     if (formData.department === "") {
       newErrors.department = "Department is required";
     }
-    else if(!/^[a-zA-Z]+$/.test(formData.department)) {
+    else if(!/^[a-zA-Z ]+$/.test(formData.department)) {
       newErrors.department = "Department should only contain letters";
     }
 
